@@ -1,0 +1,78 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+    var sartlarUrl = Url.Action("SartlarVeKosullar", "HomeDefault");
+}
+
+<title>Kayıt Ol</title>
+
+@*<link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/SignUp/style.css?v=1.1" />*@
+<link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/SignUp/style.css" />
+<div class="container">
+    @using (Html.BeginForm("SignUp", "Login", FormMethod.Post, new { id = "signupForm" }))
+    {
+        <div class="signup-container">
+            <h2>Kayıt Ol</h2>
+            <input type="text" id="UserName" class="input-field name" name="UserName" placeholder="Adınız" maxlength="50" required oninput="validateInput(this, 'UserName')" />
+            <input type="text" id="UserSurname" class="input-field name" name="UserSurname" placeholder="Soyadınız" maxlength="50" required oninput="validateInput(this, 'UserSurname')" />
+            <input type="email" class="input-field email" name="UserEmail" placeholder="Mail Adresiniz" maxlength="100" required />
+            <input type="tel" class="input-field phone" id="UserPhone" name="UserPhone" placeholder="Telefon Numaranız" required maxlength="11" pattern="[0-9]{11}" />
+            <input type="password" class="input-field password" name="UserPassword" placeholder="Şifreniz" maxlength="50" required />
+            <div class="login-check">
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox" id="termsCheckbox" checked> <a href="@sartlarUrl">Şartlar ve Koşulları</a>  Kabul Ediyorum
+                </label>
+            </div>
+
+            <input type="submit" value="Kayıt Ol" class="signup-button" id="btn1">
+        </div>
+    }
+</div>
+
+<!-- SweetAlert CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+<!-- SweetAlert JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (TempData["SignUpMessage"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Bilgi',
+                text: '@TempData["SignUpMessage"]',
+                icon: 'info',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            }).then(() => {
+                window.location.href = '@Url.Action("UserLogin", "Login")';
+            });
+        });
+    </script>
+}
+
+<script>
+    document.getElementById('signupForm').addEventListener('submit', function (event) {
+        var checkbox = document.getElementById('termsCheckbox');
+        if (!checkbox.checked) {
+            event.preventDefault(); // Formun gönderilmesini engelle
+            Swal.fire({
+                title: 'Hata',
+                text: 'Kayıt olmak için şartları kabul etmelisiniz.',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true
+            });
+        }
+    });
+</script>
+
+<script>
+    function validateInput(input, id) {
+        if (id === 'UserName' || id === 'UserSurname') {
+            input.value = input.value.replace(/[^a-zA-ZığüşöçİĞÜŞÖÇ\s]/g, '');
+        }
+    }
+</script>

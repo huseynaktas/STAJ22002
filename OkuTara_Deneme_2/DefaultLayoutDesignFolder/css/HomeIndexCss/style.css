@@ -1,0 +1,283 @@
+﻿body {
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Slider Yapısı İçin Css*/
+
+.custom-slider-container {
+    position: relative;
+    /*width: 100%;*/
+    max-width: 1200px;
+    /*height: 700px;*/ /* İstediğin yüksekliği buradan ayarlayabilirsin */
+    margin: 20px auto;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 0;
+}
+
+.custom-slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%; /* Slider içeriklerinin yüksekliğini container'a uydurur */
+}
+
+.custom-slider-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+    .custom-slider-slide img {
+        width: 100%;
+        display: block;
+        border-radius: 10px;
+        height: 100%; /* Resimleri slider boyutuna göre ölçeklendirir */
+        object-fit: cover; /* Resimlerin orantılı şekilde kesilmesini sağlar */
+    }
+
+.custom-slider-prev, .custom-slider-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.custom-slider-prev {
+    left: 10px;
+}
+
+.custom-slider-next {
+    right: 10px;
+}
+
+/**/
+
+.slider {
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 800px; /* Slider genişliğini sınırlamak için */
+}
+
+.slides {
+    display: flex;
+    transition: transform 1s ease-in-out;
+}
+
+    .slides img {
+        width: 100%;
+        height: auto;
+    }
+
+.text-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    width: 100%;
+    max-width: 800px; /* Yazı içeriğinin genişliğini sınırlamak için */
+}
+
+    .text-content h1 {
+        margin-top: 0;
+    }
+
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .text-content, .slider {
+        flex: 1;
+        margin: 20px;
+    }
+
+    
+}
+
+@media (min-width: 1281px) {
+    .slider, .text-content {
+        width: 100%;
+        border-radius: 10px;
+        margin: 20px;
+    }
+
+    .text-content {
+        padding: 20px;
+    }
+    .custom-slider-container {
+        height: 700px;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .slider, .text-content {
+        width: 480px;
+        border-radius: 10px;
+        margin: 20px;
+    }
+
+    .text-content {
+        padding: 20px;
+    }
+    .custom-slider-container {
+        height: 600px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .slider, .text-content {
+        flex: 1;
+        margin: 20px;
+    }
+
+    .custom-slider-container {
+        height: 500px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .slider, .text-content {
+        flex: 1;
+        margin: 20px;
+    }
+    .custom-slider-container {
+        height: 500px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .custom-slider-container {
+        height: 300px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .custom-slider-container {
+        height: 250px;
+    }
+}
+
+.additional-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px; /* Yeni bölüm genişliğini sınırlamak için */
+}
+
+.single-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+    .single-image-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+.additional-text-content {
+    flex: 2;
+    padding: 20px;
+}
+
+    .additional-text-content h2 {
+        margin-top: 0;
+    }
+
+@media (max-width: 768px) {
+    .additional-section {
+        flex-direction: column;
+        margin: 20px;
+    }
+
+    .single-image-container, .additional-text-content {
+        padding: 10px;
+    }
+}
+
+
+.cards-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 40px;
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+}
+
+.card {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+.card-1 {
+    background-color: #FF6F61; /* Farklı bir renk */
+}
+
+.card-2 {
+    background-color: #6B5B95; /* Farklı bir renk */
+}
+
+.card-3 {
+    background-color: #88B04B; /* Farklı bir renk */
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+@media (max-width: 768px) {
+    .cards-section {
+        flex-direction: column;
+    }
+
+    .card {
+        margin: 20px ;
+    }
+}

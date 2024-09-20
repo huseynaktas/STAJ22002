@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+    var user = ViewBag.User as OkuTara_Deneme_2.Models.Classes.User;
+    var userRoles = ViewBag.UserRoles as List<string>;
+}
+
+
+
+<h3>Kullanıcı Rolleri:</h3>
+<ul>
+    @if (userRoles != null && userRoles.Any())
+    {
+        foreach (var role in userRoles)
+        {
+            <li>@role</li>
+        }
+    }
+    else
+    {
+        <li>Hiçbir rol bulunamadı.</li>
+    }
+</ul>

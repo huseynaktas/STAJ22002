@@ -1,0 +1,33 @@
+﻿@model OkuTara_Deneme_2.Models.Classes.User
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-5 d-flex justify-content-center">
+    @using (Html.BeginForm("AdminUpdate", "AdminProfile", FormMethod.Post))
+    {
+        <h2>Admin Bilgileri Güncelleme</h2>
+
+        @Html.HiddenFor(x => x.UserId)
+
+        <div class="my-2">
+            @Html.Label("Ad")
+            @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+        </div>
+        <div class="my-2">
+            @Html.Label("Soyad")
+            @Html.TextBoxFor(x => x.UserSurname, new { @class = "form-control" })
+        </div>
+        <div class="my-2">
+            @Html.Label("Mail")
+            @Html.TextBoxFor(x => x.UserEmail, new { @class = "form-control", @disabled = "disabled" })
+        </div>
+        <div class="my-2">
+            @Html.Label("Telefon")
+            @Html.TextBoxFor(x => x.UserPhone, new { @class = "form-control" })
+        </div>
+        <div class="py-1 d-flex justify-content-end align-items-center">
+            <button class="btn btn-info" data-toggle="tooltip" data-placement="right" title="Güncelle"><i class="fa-solid fa-circle-check"></i></button>
+        </div>
+    }
+</div>

@@ -1,0 +1,129 @@
+﻿@model OkuTara_Deneme_2.Models.Classes.GeneralSetting
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<title>Admin - Ayarları Düzenle</title>
+
+<div class="container">
+    <h2 class="my-4">Genel Ayarları Düzenle</h2>
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+    {
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="my-2">
+            @Html.Label("Başlık")
+            @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+        </div>
+        <div class="my-2">
+            @Html.Label("Açıklama")
+            @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+        </div>
+
+        <div class="my-2">
+            @Html.Label("Anahtar Kelimeler")
+            @Html.TextAreaFor(x => x.Keywords, new { @class = "form-control" })
+        </div>
+
+        <div class="my-2">
+            @Html.Label("Font Boyutu")
+            @Html.TextBoxFor(x => x.FontSize, new { @class = "form-control", placeholder = "Örn: 16px" })
+        </div>
+
+        <div class="my-2">
+            @Html.Label("Font Rengi")
+            @Html.TextBoxFor(x => x.FontColor, new { @type = "color", @class = "form-control" })
+        </div>
+
+        <div class="my-2">
+            @Html.Label("Font Ailesi")
+            @Html.DropDownListFor(x => x.FontFamily, new SelectList(new[]
+                { "Arial, sans-serif", "Times New Roman, serif", "Courier New, monospace", "Montserrat" }),
+                "Font Ailesi Seçiniz", new { @class = "form-control" })
+        </div>
+
+        <div class="my-2">
+            @Html.Label("Arka Plan Rengi")
+            @Html.TextBoxFor(x => x.BackgroundColor, new { @type = "color", @class = "form-control" })
+        </div>
+
+        <div class="my-2 d-flex align-items-center">
+            <div class="">
+                @Html.Label("Aktiflik", new { @class = "mr-2" })
+            </div>
+            <div class="form-check">
+                @Html.CheckBoxFor(x => x.IsActive, new { @class = "form-check-input", @id = "defaultCheck1" })
+                <label class="form-check-label" for="defaultCheck1"></label>
+            </div>
+        </div>
+        <!-- Logo yükleme kısmı -->
+        <div class="my-2">
+            @Html.Label("Logo Yükle")
+            <input type="file" name="LogoUpload" class="form-control" />
+            @if (!string.IsNullOrEmpty(Model.LogoUrl))
+            {
+                <p>Mevcut Logo:</p>
+                <div class="d-flex justify-content-center">
+                    <img src="@Model.LogoUrl" alt="Site Logosu" style="max-width: 150px;" />
+
+                </div>
+            }
+        </div>
+
+
+        <div class="d-flex justify-content-end">
+            <div class="form-group row">
+                <button class="btn btn-info" data-toggle="tooltip" data-placement="right" title="Kaydet">
+                    <i class="fa-solid fa-circle-check"></i>
+                </button>
+            </div>
+        </div>
+    }
+</div>
+
+
+@*<div class="container">
+        <h2 class="my-4">Genel Ayarları Düzenle</h2>
+
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="my-2">
+                @Html.Label("Başlık")
+                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+            </div>
+            <div class="my-2">
+                @Html.Label("Açıklama")
+                @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+            </div>
+
+
+            <div class="my-2">
+                @Html.Label("Anahtar Kelimeler")
+                @Html.TextAreaFor(x => x.Keywords, new { @class = "form-control" })
+            </div>
+
+            <div class="my-2 d-flex align-items-center">
+                <div class="">
+                    @Html.Label("Aktiflik", new { @class = "mr-2" })
+                </div>
+                <div class="form-check">
+                    @Html.CheckBoxFor(x => x.IsActive, new { @class = "form-check-input", @id = "defaultCheck1" })
+                    <label class="form-check-label" for="defaultCheck1"></label>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <div class="form-group row">
+                    <button class="btn btn-info" data-toggle="tooltip" data-placement="right" title="Kaydet">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </button>
+
+                </div>
+            </div>
+
+        }
+    </div>*@

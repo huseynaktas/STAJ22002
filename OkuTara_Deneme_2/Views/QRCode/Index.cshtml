@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+<link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/QRCodeCss/style.css" />
+
+
+<div class="qr-code-form" >
+    @using (Html.BeginForm("Index", "QRCode", FormMethod.Post))
+    {
+        <input type="text" name="kod" class="qr-input" placeholder="QR kodu girin" />
+        <input type="submit" value="QR Oluştur" class="qr-submit" />
+    }
+    <br />
+    @if (ViewBag.karekodImage != null)
+    {
+        <img src="@ViewBag.karekodImage" alt="QR Kodu" class="qr-image" />
+    }
+</div>
+
+
+<button>
+    <a href="@Url.Action("Index", "UserProfile")" class="">Profil Sayfasına Geri Dön</a>
+</button>
+
+
+

@@ -1,0 +1,45 @@
+﻿@using OkuTara_Deneme_2.Models.Classes;
+@*@model List<User>*@
+@model List<OkuTara_Deneme_2.ViewModels.ListToUserViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<title>Admin - Kullanıcı</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<div class="m-xl-6 m-lg-5 m-md-4 m-sm-3 m-2 text-center">
+    <div>
+        <table class="table table-striped">
+            <tr>
+                <th>AD SOYAD</th>
+                <th class="d-none d-md-table-cell">MAİL</th>
+                <th class="d-none d-md-table-cell">TELEFON</th>
+                <th class="d-none d-md-table-cell">YETKİLER</th>
+                <th></th>
+            </tr>
+            @foreach (var u in Model)
+            {
+                <tr>
+                    <td>@u.User.UserName @u.User.UserSurname</td>
+                    <td class="d-none d-md-table-cell">@u.User.UserEmail</td>
+                    <td class="d-none d-md-table-cell">@u.User.UserPhone</td>
+                    <td class="d-none d-md-table-cell">
+                        @foreach (var item in u.Roles)
+                        {
+                            <span class="badge badge-primary">@item.RoleName</span>
+                        }
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Detail", "AdminUser", new { id = u.User.UserId })" class="btn btn-primary" data-toggle="tooltip" data-placement="left" title="Detay"><i class="fa-solid fa-circle-info"></i></a>
+                        <a href="@Url.Action("UserRoleAdd", "AdminUser", new { id = u.User.UserId })" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Rol Ata"><i class="fa-solid fa-user-shield"></i></a>
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+</div>
+

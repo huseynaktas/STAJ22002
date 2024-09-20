@@ -1,0 +1,55 @@
+﻿.contact-title {
+    text-align: center;
+    font-size: 2.5em;
+    color: #333;
+    margin: 20px;
+    letter-spacing: 2px;
+    padding-bottom: 10px;
+}
+
+
+.contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    background-color: #86AB89;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .btn:hover {
+        background-color: #75A47F;
+    }
+
+/* 
+  ##Cihaz = En Çok Tercih Edilen Mobil Boyutlar (Portrait/Dikey Modda)
+  ##Ekran = 320px to 479px Arası Ekranlar
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+    .contact-form{
+        margin: 10px;
+    }
+}

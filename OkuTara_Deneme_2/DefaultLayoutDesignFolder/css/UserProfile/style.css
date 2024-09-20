@@ -1,0 +1,266 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.table {
+    width: 100%;
+    /*margin: 50px auto;*/
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.table-hover tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table td {
+    padding: 15px;
+    border-bottom: 1px solid #dddddd;
+}
+
+    .table td label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+        color: #333333;
+    }
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333333;
+}
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        outline: none;
+    }
+
+
+
+/*.button-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+button {
+    display: block;
+    width: 100%;
+    margin: 20px auto;
+    padding: 15px;
+    background: #86AB89;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    height: 150px;
+    transition: 0.2s;
+}
+
+    button:hover {
+        background: #ffffff;
+    }
+
+
+
+    button a {
+        color: #ffffff;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    button:hover a {
+        color: #86AB89;
+    }
+*/
+
+/*Buton için yeni css*/
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap; /* Butonların birden fazla satıra taşınabilmesi için */
+    gap: 10px; /* Butonlar arasındaki boşluk */
+    justify-content: center; /* Butonları yatayda aralıklı olarak yerleştirir */
+    max-width: 100%; /* Tam genişlik sağlanır */
+}
+
+.button-item {
+    flex: 1 1 calc(33.33% - 10px); /* 3 butonun yan yana durması için genişlik ayarı */
+    box-sizing: border-box; /* Padding ve border'ı genişliğe dahil eder */
+    margin-bottom: 20px; /* Alt boşluk */
+}
+
+button {
+    width: 100%; /* Butonun tam genişlikte olması sağlanır */
+    padding: 15px;
+    background: #86AB89;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.2s;
+    height: 150px; /* Kare görünüm için yükseklik eklenir */
+}
+
+    button:hover {
+        background: #ffffff;
+    }
+
+    button a {
+        color: #ffffff;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        height: 100%;
+        line-height: 70px; /* Linkin dikeyde ortalanması için */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    button:hover a {
+        color: #86AB89;
+    }
+
+
+
+/* 
+  ##Cihaz = Masaüstü
+  ##Ekran = 1281px 'den yüksek çözünürlükler için
+*/
+
+@media (min-width: 1281px) {
+
+    .table {
+        max-width: 400px;
+        margin: 50px auto;
+    }
+    button {
+        max-width: 150px;
+    }
+}
+
+/* 
+  ##Cihaz = Laptoplar, Masaüstü
+  ##Ekran = 1025px to 1280px Arası Ekranlar
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+    .table {
+        max-width: 400px;
+        margin: 50px auto;
+    }
+
+    button {
+        max-width: 150px;
+    }
+}
+
+/* 
+  ##Cihaz = Tabletler, Ipad (portrait/dikey modda)
+  ##Ekran = 768px to 1024px Arası Ekranlar
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .table {
+        max-width: 400px;
+        margin: 50px auto;
+    }
+
+    button {
+        max-width: 150px;
+    }
+}
+
+/* 
+  ##Cihaz = Tabletler, Ipad (landscape/yatay modda)
+  ##Ekran = 768px to 1024px Arası Ekranlar
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+    .table {
+        max-width: 400px;
+        margin: 50px auto;
+    }
+
+    button {
+        max-width: 150px;
+    }
+}
+
+/* 
+  ##Cihaz = Düşük Çözünürlüklü Tablet ve Mobil Ekranlar (Landscape / Yatay Modda)
+  ##Ekran = 481px to 767px Arası Ekranlar
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    .table {
+        max-width: 400px;
+        margin: 50px auto;
+    }
+
+    button {
+        max-width: 100px;
+        height: 100px;
+    }
+
+    .button-item {
+        flex: 0 1 100%; /* Butonlar mobilde tam genişlikte olur */
+    }
+
+        button a {
+            line-height: normal; /* Mobilde line-height sıfırlanır */
+        }
+}
+
+/* 
+  ##Cihaz = En Çok Tercih Edilen Mobil Boyutlar (Portrait/Dikey Modda)
+  ##Ekran = 320px to 479px Arası Ekranlar
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+    .table {
+        max-width: 300px;
+        margin: 50px auto;
+    }
+
+    button {
+        max-width: 100px;
+        height: 100px;
+    }
+
+    .button-item {
+        flex: 0 1 100%; /* Butonlar mobilde tam genişlikte olur */
+    }
+
+
+        button a {
+            line-height: normal; /* Mobilde line-height sıfırlanır */
+        }
+}

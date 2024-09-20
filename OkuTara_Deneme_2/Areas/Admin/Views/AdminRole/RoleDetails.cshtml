@@ -1,0 +1,31 @@
+﻿@model OkuTara_Deneme_2.Models.Classes.Role
+
+@{
+    ViewBag.Title = "RoleDetails";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<title>Admin - Rol Detay</title>
+
+
+<div class="p-5 d-flex justify-content-center">
+    <div class="w-25">
+        @using (Html.BeginForm("RoleUpdate", "AdminRole", FormMethod.Post))
+        {
+            <h2>Rol Bilgileri Güncelleme</h2>
+
+            @Html.HiddenFor(x => x.RoleId)
+
+            <div class="my-3">
+                @Html.Label("Rol Adı")
+                @Html.TextBoxFor(x => x.RoleName, new { @class = "form-control" })
+            </div>
+
+            <div class="py-1  d-flex justify-content-end align-items-center">
+                <button class="btn btn-info" data-toggle="tooltip" data-placement="right" title="Güncelle">
+                    <i class="fa-solid fa-circle-check"></i>
+                </button>
+            </div>
+        }
+    </div>
+</div>

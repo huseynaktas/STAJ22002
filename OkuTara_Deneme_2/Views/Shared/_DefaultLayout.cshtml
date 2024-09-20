@@ -1,0 +1,193 @@
+﻿
+@{
+    Layout = null;
+    var homeUrl = Url.Action("Index", "HomeDefault");
+    var hakkimizdaUrl = Url.Action("Hakkimizda", "HomeDefault");
+    var loginUrl = Url.Action("UserLogin", "Login");
+    var logoutUrl = Url.Action("Logout", "Login");
+    var signupUrl = Url.Action("SignUp", "Login");
+    var profilUrl = Url.Action("Index", "UserProfile");
+    var iletisimUrl = Url.Action("NewContact", "Contact");
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <meta name="description" content="@ViewBag.Description" />
+    <meta name="keywords" content="@ViewBag.Keywords" />
+    <link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/HeaderCss/style.css?v=1.1" />
+    @*<link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/HeaderCss/style.css" />*@
+    <link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/FooterCss/style.css?v=1.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="~/DefaultLayoutDesignFolder/img/logo_tara_oku_1.jpeg" />
+    <style>
+        * {
+            font-family: "@ViewBag.FontFamily";
+            /*font-size:*/ @ViewBag.FontSize/*;*/
+        }
+        header{
+            background-color: @ViewBag.BackgroundColor;
+        }
+        .footer-distributed{
+            background-color: @ViewBag.BackgroundColor;
+        }
+        p{
+            font-size: @ViewBag.FontSize;
+        }
+    </style>
+    @*<title>@ViewBag.Title</title>*@
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="@homeUrl">
+                <img src="~/DefaultLayoutDesignFolder/img/logo_tara_oku_1.jpeg" />
+            </a>
+        </div>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                    @*<a href="@homeUrl">Ana Sayfa</a>*@
+                    <a href="@Url.Action("Index", "HomeDefault")">Ana Sayfa</a>
+                </li>
+                <li>
+                    <a href="@hakkimizdaUrl">Hakkımızda</a>
+                </li>
+                @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+
+                    if (Session["Username"] != null)
+                    {
+                        <li>
+                            <a href="@profilUrl">@Session["Username"]</a>
+
+                        </li>
+
+                        <li>
+                            <a href="@logoutUrl" class="list-group-item list-group-item-action bg-light">Çıkış Yap</a>
+                        </li>
+
+                    }
+
+
+                }
+                else
+                {
+                    <li>
+                        <a href="@loginUrl">Giriş Yap</a>
+                    </li>
+                    <li>
+                        <a href="@signupUrl">Kayıt Ol</a>
+                    </li>
+
+                }
+            </ul>
+
+        </nav>
+    </header>
+
+    <div class="content">
+        @RenderBody()
+    </div>
+
+
+
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+            <h3>Sorsware <span>Yazılım </span>A.Ş.</h3>
+
+            <p class="footer-links">
+                <a href="@homeUrl">Ana Sayfa</a>
+                |
+                <a href="@hakkimizdaUrl">Hakkımızda</a>
+                |
+                <a href="@iletisimUrl">İletişim</a>
+            </p>
+
+            <p class="footer-company-name">Copyright © 2021 <strong>Sorsware Yazılım </strong> Tüm Hakları Saklıdır</p>
+        </div>
+
+        <div class="footer-center">
+            <div class="location-div" onclick="openLocation()">
+                <i class="fa fa-map-marker"></i>
+                <p>
+                    <span>Bursa</span>
+                    Türkiye
+                </p>
+            </div>
+
+            <div class="phone-div" onclick="callPhone()">
+                <i class="fa fa-phone"></i>
+                <p>+90 222 000 00 00</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:sagar00001.co@gmail.com">info@sorsware.com</a></p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>Misyonumuz</span>
+                <strong>Sorsware A.Ş.</strong> , yenilikçi çözümler üreterek müşterilerine dijital dönüşümde destek sağlar. Ekibi, kullanıcı dostu uygulamalar geliştirmeye odaklanır ve sürekli olarak teknolojiyi takip eder.
+            </p>
+            <div class="footer-icons">
+                <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        hamburger = document.querySelector('.hamburger');
+        hamburger.onclick = function () {
+            navBar = document.querySelector('.nav-bar');
+            navBar.classList.toggle('active');
+        }
+    </script>
+    <script>
+        function openLocation() {
+            var url = "https://www.google.com.tr/maps/place/Sorsware+Bili%C5%9Fim+San.+ve+Tic.+A.%C5%9E./@@40.2226441,28.8562661,17z/data=!3m1!4b1!4m6!3m5!1s0x14ca0e206ddf4897:0x1fca487c99829216!8m2!3d40.22264!4d28.858841!16s%2Fg%2F11bxddxgv4?hl=tr&entry=ttu";
+            window.open(url, "_blank");
+        }
+    </script>
+    <script>
+        function callPhone() {
+            window.location.href = "tel:+902220000000";
+        }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuItem = document.querySelector('.custom-header-menu-item');
+            const dropdownMenu = document.querySelector('.custom-dropdown-menu');
+
+            if (window.innerWidth <= 900) {
+                menuItem.addEventListener('click', function (e) {
+                    e.preventDefault(); // Linkin tıklama etkisini önler
+                    dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+                });
+
+                // Sayfanın herhangi bir yerine tıklanınca menüyü kapat
+                document.addEventListener('click', function (e) {
+                    if (!menuItem.contains(e.target)) {
+                        dropdownMenu.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

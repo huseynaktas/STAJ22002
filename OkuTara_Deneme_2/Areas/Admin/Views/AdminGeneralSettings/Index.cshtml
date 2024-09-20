@@ -1,0 +1,107 @@
+﻿@model IEnumerable<OkuTara_Deneme_2.Models.Classes.GeneralSetting>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<title>Admin - Ayarlar</title>
+
+<div class="container">
+    <h2 class="my-4">Genel Ayarlar Listesi</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-striped table-hover text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Başlık</th>
+                        <th scope="col" class="d-none d-lg-table-cell ">Açıklama</th>
+                        <th scope="col" class="d-none d-lg-table-cell ">Anahtar Kelimeler</th>
+                        <th scope="col" class="d-none d-lg-table-cell ">Font Boyutu</th>
+                        <th scope="col" class="d-none d-lg-table-cell ">Font Rengi</th>
+                        <th scope="col" class="d-none d-lg-table-cell ">Font Ailesi</th>
+                        <th scope="col" class="d-none d-lg-table-cell ">Arka Plan Rengi</th>
+                        <th scope="col" class="d-none d-lg-table-cell ">Aktiflik Durumu</th>
+                        <th scope="col" class="d-none d-lg-table-cell ">Site Logosu</th>
+                        <th scope="col" class=""></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Title</td>
+                            <td class="d-none d-lg-table-cell ">@item.Description</td>
+                            <td class="d-none d-lg-table-cell ">@item.Keywords</td>
+                            <td class="d-none d-lg-table-cell ">@item.FontSize</td>
+                            <td class="d-none d-lg-table-cell "><span style="color:@item.FontColor">@item.FontColor</span></td>
+                            <td class="d-none d-lg-table-cell ">@item.FontFamily</td>
+                            <td class="d-none d-lg-table-cell "><span style="color:@item.BackgroundColor; padding: 5px; display: inline-block;">@item.BackgroundColor</span></td>
+                            <td class="d-none d-lg-table-cell">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <input type="checkbox" @(item.IsActive ? "checked" : "") disabled>
+                                </div>
+                            </td>
+                            <td class="d-none d-lg-table-cell ">
+                                <img src="@item.LogoUrl" alt="Site Logosu" style="max-width: 150px;" />
+                            </td>
+                            <td class="d-flex justify-content-end">
+                                <a href="@Url.Action("Edit", "AdminGeneralSettings", new { id = item.Id })" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Detay">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-4 d-flex justify-content-end">
+        <a href="@Url.Action("Create", "AdminGeneralSettings")" class="btn btn-success" style="width: 130px;"><i class="fa-solid fa-circle-plus"></i> Yeni Ayar</a>
+    </div>
+</div>
+
+@*<div class="container">
+    <h2 class="my-4">Genel Ayarlar Listesi</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Başlık</th>
+                        <th scope="col">Açıklama</th>
+                        <th scope="col">Anahtar Kelimeler</th>
+                        <th scope="col">Aktiflik Durumu</th>
+                        <th scope="col">Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Title</td>
+                            <td>@item.Description</td>
+                            <td>@item.Keywords</td>
+                            <td class="d-none d-lg-table-cell">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <input type="checkbox" @(item.IsActive ? "checked" : "") disabled>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", "AdminGeneralSettings", new { id = item.Id })" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Detay">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-4 d-flex justify-content-end">
+        <a href="@Url.Action("Create", "AdminGeneralSettings")" class="btn btn-success" style="width: 130px;"><i class="fa-solid fa-circle-plus"></i> Yeni Ayar</a>
+    </div>
+</div>*@

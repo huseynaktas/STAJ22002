@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<title>Giriş Yap</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Scripts/jquery-3.7.0.js"></script>
+<link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/LoginCss/style.css" />
+<div class="container">
+    @using (Html.BeginForm("UserLogin", "Login", FormMethod.Post))
+    {
+        <div class="login-container">
+            <h2>Üye Girişi</h2>
+            <input type="text" class="input-field" name="UserEmail" placeholder="E-Posta" required />
+            <input type="password" class="input-field" name="UserPassword" placeholder="Şifre" required />
+            <input type="submit" value="Giriş Yap" class="login-button">
+        </div>
+    }
+    @if (TempData["LoginErrorMessage"] != null)
+    {
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script type="text/javascript">
+            Swal.fire({
+                icon: 'error',
+                title: 'Giriş Başarısız',
+                text: '@TempData["LoginErrorMessage"]',
+                timer: 3000,
+                showConfirmButton: false
+            });
+        </script>
+    }
+</div>

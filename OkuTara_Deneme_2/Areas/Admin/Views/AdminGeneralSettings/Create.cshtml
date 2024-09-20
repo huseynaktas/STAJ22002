@@ -1,0 +1,70 @@
+﻿@model OkuTara_Deneme_2.Models.Classes.GeneralSetting
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<title>Admin - Yeni Ayar Ekle</title>
+<div class="p-5 d-flex justify-content-center">
+    <div class="w-50">
+
+        @using (Html.BeginForm("Create", "AdminGeneralSettings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <h2>Yeni Ayar Ekleme</h2>
+
+            <div class="my-3">
+                @Html.Label("Başlık")
+                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+            </div>
+
+            <div class="my-3">
+                @Html.Label("Açıklama")
+                @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+            </div>
+
+            <div class="my-3">
+                @Html.Label("Anahtar Kelimeler")
+                @Html.TextBoxFor(x => x.Keywords, new { @class = "form-control" })
+            </div>
+
+            <!-- Font Size -->
+            <div class="my-3">
+                @Html.Label("Font Boyutu")
+                @Html.TextBoxFor(x => x.FontSize, new { @class = "form-control", placeholder = "Örnek: 16px" })
+            </div>
+
+            <!-- Font Color -->
+            <div class="my-3">
+                @Html.Label("Font Rengi")
+                @Html.TextBoxFor(x => x.FontColor, new { @class = "form-control", type = "color" })
+            </div>
+
+            <!-- Font Family -->
+            <div class="my-3">
+
+                @Html.Label("Font Ailesi")
+                @Html.DropDownListFor(x => x.FontFamily, new SelectList(new[]
+                    { "Arial, sans-serif", "Times New Roman, serif", "Courier New, monospace", "Montserrat" }),
+                    "Font Ailesi Seçiniz", new { @class = "form-control" })
+            </div>
+
+            <!-- Background Color -->
+            <div class="my-3">
+                @Html.Label("Arka Plan Rengi")
+                @Html.TextBoxFor(x => x.BackgroundColor, new { @class = "form-control", type = "color" })
+            </div>
+
+            <!-- Logo Upload -->
+            <div class="my-3">
+                @Html.Label("Logo Yükle")
+                <input type="file" name="LogoUpload" class="form-control" />
+            </div>
+
+            <div class="py-1 d-flex justify-content-end align-items-center">
+                <button class="btn btn-info" data-toggle="tooltip" data-placement="right" title="Ekle">
+                    <i class="fa-solid fa-circle-check"></i>
+                </button>
+            </div>
+        }
+    </div>
+</div>

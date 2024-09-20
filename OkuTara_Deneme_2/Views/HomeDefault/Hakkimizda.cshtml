@@ -1,0 +1,27 @@
+﻿@model OkuTara_Deneme_2.ViewModels.AboutUsViewModel
+@{
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<title>Hakkımıza</title>
+@*<link href="~/DefaultLayoutDesignFolder/css/HakkimizdaCss/style.css" rel="stylesheet" />*@
+<link href="~/DefaultLayoutDesignFolder/css/HakkimizdaCss/style.css?v=1.1" rel="stylesheet" />
+<main>
+    <div class="container">
+        <section class="about-us">
+            <h1>Hakkımızda</h1>
+            @Html.Raw(Model.AboutContent.AboutContent)
+            
+            <div class="team">
+                @foreach (var item in Model.Employees)
+                {
+                    <div class="team-member">
+                        <img src="@item.EmployeeImage" />
+                        <h4>@item.EmployeeName @item.EmployeeSurname</h4>
+                        <p>@item.EmployeeDepartment</p>
+                    </div>
+                }
+            </div>
+        </section>
+    </div>
+</main>

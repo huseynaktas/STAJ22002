@@ -1,0 +1,36 @@
+﻿@model List<OkuTara_Deneme_2.Models.Classes.Page>
+@{
+    ViewBag.Title = "HomePageContent";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<title>Admin - Sayfalar</title>
+
+<div class="m-xl-6 m-lg-5 m-md-4 m-sm-3 m-2 ">
+    <div class="d-flex justify-content-center align-items-center">
+        <table class="table table-striped">
+            <tr class="text-uppercase">
+                <th>sayfa başlığı</th>
+                <th class="d-none d-lg-table-cell ">sayfa içeriği</th>
+                <th>sayfa adı</th>
+                <th>sayfa fotoğrafı</th>
+                <th></th>
+            </tr>
+            @foreach (var u in Model)
+            {
+                <tr>
+                    <td>@u.PageTitle</td>
+                    <td class="d-none d-lg-table-cell ">@u.PageContent</td>
+                    <td>@u.PageName</td>
+                    <td>
+                        <img src="@u.PagePhoto" style="width: 100px; height:100px;" />
+                    </td>
+                    <td>
+                        <a href="@Url.Action("PageDetails", "AdminPages", new { id = u.PageId })" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Detay">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

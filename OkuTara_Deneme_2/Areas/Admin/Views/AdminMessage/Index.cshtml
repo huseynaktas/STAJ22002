@@ -1,0 +1,75 @@
+﻿@using OkuTara_Deneme_2.Models.Classes;
+@model List<Contact>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<title>Admin - Mesajlar</title>
+
+<div class="mx-xl-6 mx-lg-5 mx-md-4 mx-sm-3 mx-2">
+
+    <div role="group" class="d-flex justify-content-end">
+        <button id="btnOkunmus" class="btn btn-dark m-1" onclick="showOkunmus()" data-toggle="tooltip" data-placement="bottom" title="Okundu">
+            <i class="fa-regular fa-eye"></i>
+        </button>
+        <button id="btnOkunmamis" class="btn btn-dark m-1" onclick="showOkunmamis()" data-toggle="tooltip" data-placement="bottom" title="Okunmadı">
+            <i class="fa-regular fa-eye-slash"></i>
+        </button>
+        <button id="btnHepsi" class="btn btn-dark m-1" onclick="showHepsi()" data-toggle="tooltip" data-placement="bottom" title="Hepsi">
+            <i class="fa-regular fa-comments"></i>
+        </button>
+    </div>
+    <table class="table table-striped">
+        <tr class="text-uppercase">
+            <th class="">Mesaj Gönderen</th>
+            <th class="d-none d-lg-table-cell ">Mesaj Gönderen Mail</th>
+            <th class="d-none d-lg-table-cell ">Mesaj İçeriği</th>
+            <th class="d-none d-lg-table-cell ">Mesaj Gönderilme Saati</th>
+            <th>Mesaj Konusu</th>
+            <th class="d-none d-lg-table-cell ">Mesaj Durumu</th>
+            <th></th>
+        </tr>
+        @foreach (var u in Model)
+        {
+            <tr class="@(u.IsRead ? "okunmus" : "okunmamis")">
+                <td>@u.ContactFullName</td>
+                <td class="d-none d-lg-table-cell">@u.ContactMail</td>
+                <td class="d-none d-lg-table-cell">@u.ContactContent</td>
+                <td class="d-none d-lg-table-cell">@u.TimeToSend</td>
+                <td>@u.Subject</td>
+                <td class="d-none d-lg-table-cell">
+                    <div class="d-flex justify-content-center">
+                        <input type="checkbox" @(u.IsRead ? "checked" : "") disabled>
+                    </div>
+                </td>
+                <td class="d-flex justify-content-end">
+                    <a href="@Url.Action("ContactDetail", "AdminMessage", new { id = u.ContactId })" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Detay"><i class="fa-solid fa-circle-info"></i></a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<script>
+    function showOkunmus() {
+        var rows = document.querySelectorAll("tr.okunmamis");
+        rows.forEach(row => row.style.display = "none");
+
+        var okunmusRows = document.querySelectorAll("tr.okunmus");
+        okunmusRows.forEach(row => row.style.display = "table-row");
+    }
+
+    function showOkunmamis() {
+        var rows = document.querySelectorAll("tr.okunmus");
+        rows.forEach(row => row.style.display = "none");
+
+        var okunmamisRows = document.querySelectorAll("tr.okunmamis");
+        okunmamisRows.forEach(row => row.style.display = "table-row");
+    }
+
+    function showHepsi() {
+        var rows = document.querySelectorAll("tbody tr");
+        rows.forEach(row => row.style.display = "table-row");
+    }
+</script>

@@ -1,0 +1,93 @@
+﻿body {
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+main {
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+}
+
+.about-us h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.about-us h2 {
+    text-align: start;
+    margin-top: 20px;
+}
+
+.about-us h3 {
+    margin-top: 20px;
+}
+
+.about-us p, .about-us ul {
+    line-height: 1.6;
+}
+
+.about-us ul {
+    padding-left: 20px;
+}
+
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.team-member {
+    width: calc(30% - 10px);
+    background: #f9f9f9;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+    .team-member img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+/* Cihaz = Düşük Çözünürlüklü Tablet ve Mobil Ekranlar (Landscape / Yatay Modda) */
+/* Ekran = 481px to 767px Arası Ekranlar */
+@media (min-width: 481px) and (max-width: 767px) {
+    .team-member {
+        width: calc(45% - 10px); /* 2 sütun */
+    }
+
+        .team-member img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+}
+
+/* Cihaz = En Çok Tercih Edilen Mobil Boyutlar (Portrait/Dikey Modda) */
+/* Ekran = 320px to 479px Arası Ekranlar */
+@media (min-width: 320px) and (max-width: 480px) {
+    .team-member {
+        width: 100%; /* 1 sütun */
+    }
+
+        .team-member img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+}

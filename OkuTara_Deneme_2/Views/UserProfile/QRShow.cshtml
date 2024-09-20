@@ -1,0 +1,77 @@
+﻿@model OkuTara_Deneme_2.Models.Classes.User
+@{
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+    var qrCodes = ViewBag.QRCodes as IEnumerable<OkuTara_Deneme_2.Models.Classes.QRCode>;
+    var createqrUrl = Url.Action("CreateQR", "UserProfile");
+}
+
+<title>Kişisel QR Kod</title>
+
+@*<link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/QRShow/style.css?v=1.1" />*@
+<link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/QRShow/style.css" />
+@*<link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/QRShow/style.css?v=1.2"/>*@
+
+<style>
+    /* CSS kodlarınızı buraya ekleyin */
+</style>
+
+<!-- QR Kodları Gösterim Alanı -->
+<div class="qr-container">
+    <h1 class="baslik">Kişisel QR Kodunuz</h1>
+
+    @if (qrCodes != null && qrCodes.Any())
+    {
+        // İlk QR kodu göstermek için
+        var firstQRCode = qrCodes.FirstOrDefault();
+        if (firstQRCode != null)
+        {
+            <div class="qr-first">
+                <img src="@firstQRCode.QRCodeData" alt="QR Kod" />
+            </div>
+        }
+
+        <button id="create-qr-button">
+            <a href="@createqrUrl" class="list-group-item list-group-item-action bg-light">Özel QR Oluştur</a>
+        </button>
+
+        <h2 class="baslik">Diğer QR Kodlarınız</h2>
+        // Diğer QR kodları göstermek için
+        <div class="qr-others">
+            @foreach (var qrCode in qrCodes.Skip(1)) // İlk QR kodu atla
+            {
+                <div class="qr-item">
+                    <img src="@qrCode.QRCodeData" alt="QR Kod" />
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p class="no-qr">QR kod bulunamadı.</p>
+    }
+</div>
+
+<!-- QR Oluştur Butonu -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+<script src="~/Scripts/jquery-3.7.0.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var qrCodeCount = @ViewBag.QRCodeCount;
+
+        document.getElementById('create-qr-button').addEventListener('click', function(event) {
+            if (qrCodeCount >= 7) {
+                event.preventDefault(); // Linki engelle
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Uyarı!',
+                    text: 'En fazla 6 adet QR oluşturabilirsiniz.',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
+                });
+            }
+        });
+    });
+</script>

@@ -1,0 +1,67 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+<link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/QRCodeCss/style.css?v=1.1" />
+@*<link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/QRCodeCss/style.css" />*@
+
+<!-- SweetAlert CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+<!-- SweetAlert JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Scripts/jquery-3.7.0.js"></script>
+
+<div class="qr-code-form">
+    @using (Html.BeginForm("CreateQR", "UserProfile", FormMethod.Post))
+    {
+        <input type="text" name="kod" class="qr-input" placeholder="QR kodu girin" required />
+        <input type="submit" value="Oluştur" class="qr-submit" />
+    }
+
+    <br />
+
+    @if (ViewBag.karekodImage != null)
+    {
+        <img src="@ViewBag.karekodImage" alt="QR Kodu" class="qr-image" />
+
+        using (Html.BeginForm("SaveQR", "UserProfile", FormMethod.Post))
+        {
+            <input type="hidden" name="qrData" value="@ViewBag.karekodImage" />
+            <input type="submit" value="Kaydet" class="qr-submit" />
+        }
+    }
+</div>
+
+<button>
+    <a href="@Url.Action("Index", "UserProfile")" class="">Profil Sayfasına Geri Dön</a>
+</button>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var successMessage = "@TempData["SuccessMessage"]";
+        var errorMessage = "@TempData["ErrorMessage"]";
+
+        if (successMessage) {
+            Swal.fire({
+                title: 'Başarı!',
+                text: successMessage,
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            });
+        }
+
+        if (errorMessage) {
+            Swal.fire({
+                title: 'Hata!',
+                text: errorMessage,
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            });
+        }
+    });
+</script>

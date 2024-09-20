@@ -1,0 +1,62 @@
+﻿@model OkuTara_Deneme_2.Models.Classes.Contact
+@{
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<title>İletişim</title>
+<link href="~/DefaultLayoutDesignFolder/css/NewContactCss/style.css?v=1.1" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert script -->
+<script src="~/Scripts/jquery-3.7.0.js"></script>
+<h1 class="contact-title">İLETİŞİM</h1>
+
+
+@using (Html.BeginForm("NewContact", "Contact", FormMethod.Post, new { @class = "contact-form" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContactFullName, "Ad Soyad")
+        @Html.TextBoxFor(m => m.ContactFullName, new { @class = "form-control", maxlength = "50", required = "required" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContactMail, "Mail Adresi")
+        @Html.TextBoxFor(m => m.ContactMail, new { @class = "form-control", maxlength = "100", required = "required", type = "email" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Subject, "Konu")
+        @Html.DropDownListFor(m => m.Subject,  new SelectList(new List<string> { "Şikayet ve İhbar", "Uygulama Hakkında", "Bilgilendirme", "Genel", "Diğer" }), "Konu Seçiniz", new { @class = "form-control", required = "required" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContactContent, "Mesaj")
+        @Html.TextAreaFor(m => m.ContactContent, new { @class = "form-control", maxlength = "1000", required = "required" })
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Gönder</button>
+    </div>
+}
+
+<script>
+        $(document).ready(function () {
+            var success = '@TempData["Success"]';
+            if (success === 'True') {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Formunuz başarılı bir şekilde iletildi',
+                    showConfirmButton: false,
+                    timer: 2000
+                }).then(function() {
+                    // Formu temizleme
+                    $('form')[0].reset();
+                });
+            } else if (success === 'False') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Formunuz gönderilirken bir hata oluştu',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            }
+        });
+</script>

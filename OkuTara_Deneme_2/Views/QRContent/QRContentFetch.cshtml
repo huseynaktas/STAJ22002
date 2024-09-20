@@ -1,0 +1,107 @@
+﻿@model OkuTara_Deneme_2.Models.Classes.QRCodeContent
+
+@{
+
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<title>QR İçerik Sayfası</title>
+<link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/QRContentFetchCss/style.css?v=1.0" />
+@*<link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/QRContentFetchCss/style.css"/>*@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<br />
+<div class="baslik">
+    <h2>QR İçeriğiniz</h2>
+</div>
+<div class="qr-content-container">
+
+    @using (Html.BeginForm("UpdateContent", "QRContent", FormMethod.Post))
+    {
+        @Html.Hidden("QRContentId", Model.QRContentId) <!-- Doğru şekilde gizli alan ekleme -->
+
+        <div class="form-group">
+            @Html.Label("GeneralMessage", "Genel Mesaj")
+            @Html.TextBoxFor(m => Model.GeneralMessage, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group-container">
+            <div class="form-group form-group-top">
+                @Html.Label("InstagramUrl", "Instagram Adresiniz")
+                @Html.TextBoxFor(m => Model.InstagramUrl, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-wrapper">
+                    @Html.Label("InstagramState", "Instagram Onay")
+                    @Html.CheckBoxFor(m => Model.InstagramState, new { @class = "form-control-checkbox" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group-container">
+            <div class="form-group form-group-top">
+                @Html.Label("FacebookUrl", "Facebook Adresiniz")
+                @Html.TextBoxFor(m => Model.FacebookUrl, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-wrapper">
+                    @Html.Label("FacebookState", "Facebook Onay")
+                    @Html.CheckBoxFor(m => Model.FacebookState, new { @class = "form-control-checkbox" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group-container">
+            <div class="form-group form-group-top">
+                @Html.Label("XUrl", "X Adresiniz")
+                @Html.TextBoxFor(m => Model.XUrl, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-wrapper">
+                    @Html.Label("XState", "X Onay")
+                    @Html.CheckBoxFor(m => Model.XState, new { @class = "form-control-checkbox" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group-container">
+            <div class="form-group form-group-top">
+                @Html.Label("WhatsappUrl", "Whatsapp Adresiniz")
+                @Html.TextBoxFor(m => Model.WhatsappUrl, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-wrapper">
+                    @Html.Label("WhatsappState", "Whatsapp Onay")
+                    @Html.CheckBoxFor(m => Model.WhatsappState, new { @class = "form-control-checkbox" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="button-container">
+            <button type="submit" class="btn btn-primary" id="btn1">Kaydet</button>
+        </div>
+
+    }
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('btn1').addEventListener('click', function (event) {
+            event.preventDefault();
+            Swal.fire({
+                icon: 'info',
+                title: 'Bilgi!',
+                text: 'Bilgileriniz başarıyla güncellenmiştir.',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            }).then(() => {
+                // Formu gönder
+                document.forms[0].submit();
+            });
+        });
+    });
+</script>

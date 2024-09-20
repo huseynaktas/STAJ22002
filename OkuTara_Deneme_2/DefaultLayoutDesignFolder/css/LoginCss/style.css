@@ -1,0 +1,126 @@
+﻿.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-container {
+    margin: 100px;
+    padding: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.login-container {
+    margin: 100px;
+    padding: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+    .login-container h2 {
+        margin-bottom: 20px;
+    }
+
+.input-field {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+    .login-button:hover {
+        background-color: #333;
+    }
+
+/* 
+  ##Cihaz = Masaüstü
+  ##Ekran = 1281px 'den yüksek çözünürlükler için
+*/
+
+@media (min-width: 1281px) {
+
+    .login-container {
+        margin: 100px;
+        width: 800px;
+    }
+}
+
+/* 
+  ##Cihaz = Laptoplar, Masaüstü
+  ##Ekran = 1025px to 1280px Arası Ekranlar
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+    .login-container {
+        margin: 100px;
+        width: 800px;
+    }
+}
+
+/* 
+  ##Cihaz = Tabletler, Ipad (portrait/dikey modda)
+  ##Ekran = 768px to 1024px Arası Ekranlar
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .login-container {
+        margin: 100px;
+        width: 600px;
+    }
+}
+
+/* 
+  ##Cihaz = Tabletler, Ipad (landscape/yatay modda)
+  ##Ekran = 768px to 1024px Arası Ekranlar
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+    .login-container {
+        margin: 100px;
+        width: 600px;
+    }
+}
+
+/* 
+  ##Cihaz = Düşük Çözünürlüklü Tablet ve Mobil Ekranlar (Landscape / Yatay Modda)
+  ##Ekran = 481px to 767px Arası Ekranlar
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    .login-container {
+        margin: 20px;
+    }
+}
+
+/* 
+  ##Cihaz = En Çok Tercih Edilen Mobil Boyutlar (Portrait/Dikey Modda)
+  ##Ekran = 320px to 479px Arası Ekranlar
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+    .login-container {
+        margin: 20px;
+    }
+}

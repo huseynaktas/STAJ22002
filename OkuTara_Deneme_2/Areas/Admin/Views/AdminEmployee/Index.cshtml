@@ -1,0 +1,37 @@
+﻿@using OkuTara_Deneme_2.Models.Classes;
+@model List<Employee>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<title>Admin - Çalışanlar</title>
+
+<div class="m-xl-6 m-lg-5 m-md-4 m-sm-3 m-2 text-center">
+    <div>
+        <table class="table table-striped">
+            <tr>
+                <th>AD SOYAD</th>
+                <th class="d-none d-md-table-cell">DEPARTMAN</th>
+                <th class="d-none d-md-table-cell">FOTOĞRAF</th>
+                <th></th>
+            </tr>
+            @foreach (var u in Model)
+            {
+                <tr>
+                    <td>@u.EmployeeName @u.EmployeeSurname</td>
+                    <td class="d-none d-md-table-cell">@u.EmployeeDepartment</td>
+                    <td class="d-none d-md-table-cell">
+                        <img src="@u.EmployeeImage" style="width: 100px; height: 100px;" />
+                    </td>
+                    <td>
+                        <a href="@Url.Action("EmployeeDetail", "AdminEmployee", new { id = u.EmployeeId })" class="btn btn-primary" data-toggle="tooltip" data-placement="left" title="Detay"><i class="fa-solid fa-circle-info"></i></a>
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+    <div class="mt-4 d-flex justify-content-end">
+        <a href="@Url.Action("NewEmployee", "AdminEmployee")" class="btn btn-success" style="width: 130px;"><i class="fa-solid fa-circle-plus"></i> Yeni Çalışan</a>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@using OkuTara_Deneme_2.Models.Classes;
+@model List<Role>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<title>Admin - Rol İşlemleri</title>
+
+<div class="m-xl-6 m-lg-5 m-md-4 m-sm-3 m-2 d-flex justify-content-center align-items-center ">
+    <div class="text-center row w-50">
+        <div class="col-12">
+            <table class="table table-striped ">
+                <tr class="text-uppercase">
+                    <th>Rol Adı</th>
+                    <th class="d-flex justify-content-end"></th>
+                </tr>
+                @foreach (var u in Model)
+                {
+                    <tr>
+                        <td>@u.RoleName</td>
+                        <td>
+                            <div class="d-flex justify-content-end">
+                                <a href="@Url.Action("RoleDetails", "AdminRole", new { id = u.RoleId })" class="btn btn-primary mx-1" data-toggle="tooltip" data-placement="left" title="Detay">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </a>
+                                <a href="@Url.Action("RoleRemove", "AdminRole", new { id = u.RoleId })" class="btn btn-danger" data-toggle="tooltip" data-placement="right" title="Sil">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="d-flex justify-content-end col-12">
+            <div class="">
+                <a href="@Url.Action("RoleAdd", "AdminRole")" class="btn btn-success" style="width: 110px;"><i class="fa-solid fa-circle-plus"></i> Yeni Rol</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+

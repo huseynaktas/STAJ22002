@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<title>Profil</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+
+<p id="login-message" style="display:none;">Lütfen Giriş Yapınız</p>
+
+<!-- SweetAlert2 script -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Giriş yapmamış kullanıcılar için SweetAlert göster
+        var loginMessage = document.getElementById('login-message');
+        if (loginMessage) {
+            Swal.fire({
+                title: 'Lütfen Giriş Yapınız',
+                text: '',
+                icon: 'warning',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            }).then(() => {
+                window.location.href = '@Url.Action("UserLogin", "Login")';
+            });;
+        }
+    });
+</script>

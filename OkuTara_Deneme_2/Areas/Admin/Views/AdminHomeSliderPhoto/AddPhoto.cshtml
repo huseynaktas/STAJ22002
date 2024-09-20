@@ -1,0 +1,30 @@
+﻿@model OkuTara_Deneme_2.Models.Classes.HomeSliderPhoto
+@{
+    ViewBag.Title = "AddPhoto";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<title>Admin - Admin Slider</title>
+<div class="p-5 d-flex justify-content-center">
+    <div class="w-50">
+
+        @using (Html.BeginForm("AddPhoto", "AdminHomeSliderPhoto", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <h2>Yeni Fotoğraf Ekleme</h2>
+
+            <!-- Logo Upload -->
+            <div class="my-3">
+                @Html.Label("Logo Yükle")
+                <input type="file" name="PhotoAdd" class="form-control" />
+            </div>
+
+            <div class="py-1 d-flex justify-content-end align-items-center">
+                <button class="btn btn-info" data-toggle="tooltip" data-placement="right" title="Ekle">
+                    <i class="fa-solid fa-circle-check"></i>
+                </button>
+            </div>
+        }
+        
+    </div>
+</div>

@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<title>Admin - Ana Sayfa</title>
+<div class="m-3">
+    <div class="container-fluid">
+        <h1 class="mt-4">Yönetim Paneli</h1>
+        <div class="row p-0">
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body">
+                        <h3>@ViewBag.d1</h3>
+                        <p>Toplam Kullanıcı Sayısı</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-warning text-white mb-4">
+                    <div class="card-body">
+                        <h3>@ViewBag.d2</h3>
+                        <p>Toplam QR Sayısı</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">
+                        <h3>@ViewBag.d3</h3>
+                        <p>Okunmamış Mesaj Sayısı</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-danger text-white mb-4">
+                    <div class="card-body">
+                        <h3>@ViewBag.d4</h3>
+                        <p>Okunmuş Mesaj Sayısı</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- QR Kod Sayısı Grafiği -->
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-bar mr-1"></i>
+                    Kullanıcıların QR Kod Sayıları
+                </div>
+                <div class="card-body">
+                    <canvas id="qrChart" width="200" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mesajların Konulara Göre Dağılımı (Pasta Grafiği) -->
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-pie mr-1"></i>
+                    Mesajların Konulara Göre Dağılımı
+                </div>
+                <div class="card-body">
+                    <canvas id="subjectChart" width="200" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // QR Kod Sayısı Grafiği
+    var ctxQR = document.getElementById('qrChart').getContext('2d');
+    var qrChart = new Chart(ctxQR, {
+        type: 'bar',
+        data: {
+            labels: @Html.Raw(Json.Encode(ViewBag.Usernames)), // Kullanıcı adlarını buraya ekle
+            datasets: [{
+                label: 'QR Kod Sayısı',
+                data: @Html.Raw(Json.Encode(ViewBag.QRCounts)), // QR kod sayısını buraya ekle
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Konuya Göre Mesaj Sayısı (Pasta Grafiği)
+    var ctxSubject = document.getElementById('subjectChart').getContext('2d');
+    var subjectChart = new Chart(ctxSubject, {
+        type: 'pie',
+        data: {
+            labels: @Html.Raw(Json.Encode(ViewBag.Subjects)), // Konu başlıklarını buraya ekle
+            datasets: [{
+                data: @Html.Raw(Json.Encode(ViewBag.SubjectCounts)), // Konulara göre mesaj sayısını buraya ekle
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(153, 102, 255, 0.6)',
+                    'rgba(255, 159, 64, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        }
+    });
+</script>

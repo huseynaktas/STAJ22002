@@ -1,0 +1,271 @@
+﻿@model IEnumerable<OkuTara_Deneme_2.Models.Classes.HomeSliderPhoto>
+@{
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<title>Ana Sayfa</title>
+<link href="~/DefaultLayoutDesignFolder/css/HomeIndexCss/style.css?v=1.1" rel="stylesheet" />
+@*<link href="~/DefaultLayoutDesignFolder/css/HomeIndexCss/style.css" rel="stylesheet" />*@
+
+<div class="custom-slider-container">
+    <div class="custom-slider-wrapper">
+        @foreach (var item in Model)
+        {
+            <div class="custom-slider-slide">
+                <img class="custom-slider-slide-img" src="@item.PhotoUrl" alt="Slide 1">
+            </div>
+        }
+    </div>
+    <button class="custom-slider-prev">&#10094;</button>
+    <button class="custom-slider-next">&#10095;</button>
+</div>
+<main>
+
+
+    <div class="container">
+        <div class="text-content">
+            @if (ViewBag.PagesSection1 != null)
+            {
+                foreach (var item in ViewBag.PagesSection1)
+                {
+                    <div>
+                        <h1>@Html.Raw(item.PageTitle)</h1>
+                    </div>
+                }
+            }
+            @if (ViewBag.PagesSection1 != null)
+            {
+                foreach (var item in ViewBag.PagesSection1)
+                {
+                    <div>
+                        <p>@Html.Raw(item.PageContent)</p>
+                    </div>
+                }
+            }
+        </div>
+        <div class="slider">
+            <div class="slides">
+                <img src="~/DefaultLayoutDesignFolder/img/image/qrli_araba.jpeg" alt="Image 1">
+                <img src="~/DefaultLayoutDesignFolder/img/image/qrli_araba_2.jpeg" alt="Image 2">
+                <img src="~/DefaultLayoutDesignFolder/img/image/qrli_araba_3.jpeg" alt="Image 3">
+                <img src="~/DefaultLayoutDesignFolder/img/image/qrli_araba_4.jpeg" alt="Image 4">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="additional-section">
+        <div class="single-image-container">
+            @if (ViewBag.PagesSection1 != null)
+            {
+                foreach (var item in ViewBag.PagesSection2)
+                {
+                    <div>
+                        <img src="@item.PagePhoto"/>
+                    </div>
+                }
+            }
+        </div>
+        <div class="additional-text-content">
+            @if (ViewBag.PagesSection1 != null)
+            {
+                foreach (var item in ViewBag.PagesSection2)
+                {
+                    <div>
+                        <h2>@Html.Raw(item.PageTitle)</h2>
+                    </div>
+                }
+            }
+            @if (ViewBag.PagesSection1 != null)
+            {
+                foreach (var item in ViewBag.PagesSection2)
+                {
+                    <div>
+                        <p>@Html.Raw(item.PageContent)</p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    <div class="additional-section">
+        <div class="additional-text-content">
+            @if (ViewBag.PagesSection3 != null)
+            {
+                foreach (var item in ViewBag.PagesSection3)
+                {
+                    <div>
+                        <h2>@Html.Raw(item.PageTitle)</h2>
+                    </div>
+                }
+            }
+            @if (ViewBag.PagesSection3 != null)
+            {
+                foreach (var item in ViewBag.PagesSection3)
+                {
+                    <div>
+                        <p>@Html.Raw(item.PageContent)</p>
+                    </div>
+                }
+            }
+        </div>
+        <div class="single-image-container">
+            @if (ViewBag.PagesSection3 != null)
+            {
+                foreach (var item in ViewBag.PagesSection3)
+                {
+                    <div>
+                        <img src="@item.PagePhoto" />
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    <div class="additional-section">
+        <div class="single-image-container">
+            @if (ViewBag.PagesSection4 != null)
+            {
+                foreach (var item in ViewBag.PagesSection4)
+                {
+                    <div>
+                        <img src="@item.PagePhoto" />
+                    </div>
+                }
+            }
+        </div>
+        <div class="additional-text-content">
+            @if (ViewBag.PagesSection4 != null)
+            {
+                foreach (var item in ViewBag.PagesSection4)
+                {
+                    <div>
+                        <h2>@Html.Raw(item.PageTitle)</h2>
+                    </div>
+                }
+            }
+            @if (ViewBag.PagesSection4 != null)
+            {
+                foreach (var item in ViewBag.PagesSection4)
+                {
+                    <div>
+                        <p>@Html.Raw(item.PageContent)</p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    <div class="cards-section">
+        <div class="card card-1">
+            @if (ViewBag.PagesSection1 != null)
+            {
+                foreach (var item in ViewBag.PagesSection5)
+                {
+                    <div>
+                        <h3>@Html.Raw(item.PageTitle)</h3>
+                    </div>
+                }
+            }
+            @if (ViewBag.PagesSection1 != null)
+            {
+                foreach (var item in ViewBag.PagesSection5)
+                {
+                    <div>
+                        <p>@Html.Raw(item.PageContent)</p>
+                    </div>
+                }
+            }
+        </div>
+        <div class="card card-2">
+            @if (ViewBag.PagesSection1 != null)
+            {
+                foreach (var item in ViewBag.PagesSection6)
+                {
+                    <div>
+                        <h3>@Html.Raw(item.PageTitle)</h3>
+                    </div>
+                }
+            }
+            @if (ViewBag.PagesSection1 != null)
+            {
+                foreach (var item in ViewBag.PagesSection6)
+                {
+                    <div>
+                        <p>@Html.Raw(item.PageContent)</p>
+                    </div>
+                }
+            }
+        </div>
+        <div class="card card-3">
+            @if (ViewBag.PagesSection1 != null)
+            {
+                foreach (var item in ViewBag.PagesSection7)
+                {
+                    <div>
+                        <h3>@Html.Raw(item.PageTitle)</h3>
+                    </div>
+                }
+            }
+            @if (ViewBag.PagesSection1 != null)
+            {
+                foreach (var item in ViewBag.PagesSection7)
+                {
+                    <div>
+                        <p>@Html.Raw(item.PageContent)</p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</main>
+
+<script>
+    // scripts.js
+    let index = 0;
+
+    function showSlides(n) {
+        const slides = document.querySelectorAll('.slides img');
+        if (n >= slides.length) { index = 0 }
+        if (n < 0) { index = slides.length - 1 }
+        slides.forEach((slide, i) => {
+            slide.style.transform = `translateX(${-index * 100}%)`;
+        });
+    }
+
+    function autoSlide() {
+        showSlides(index += 1);
+    }
+
+    let slideInterval = setInterval(autoSlide, 3000);
+
+    // İlk başta ilk resmi göstermek için:
+    showSlides(index);
+</script>
+
+<script>
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.custom-slider-slide');
+    const totalSlides = slides.length;
+
+    document.querySelector('.custom-slider-next').addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateSlidePosition();
+    });
+
+    document.querySelector('.custom-slider-prev').addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateSlidePosition();
+    });
+
+    function updateSlidePosition() {
+        const newPosition = -currentIndex * 100;
+        document.querySelector('.custom-slider-wrapper').style.transform = `translateX(${newPosition}%)`;
+    }
+
+    // Slider'ı otomatik olarak kaydır
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateSlidePosition();
+    }, 3000); // 3000ms = 3 saniyede bir slayt değişir
+</script>

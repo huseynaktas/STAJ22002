@@ -1,0 +1,42 @@
+﻿@model OkuTara_Deneme_2.Models.Classes.Employee
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<title>Admin - Yeni Çalışan Ekle</title>
+<div class="p-5 d-flex justify-content-center">
+    <div class="w-50">
+
+        @using (Html.BeginForm("NewEmployee", "AdminEmployee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <h2>Yeni Çalışan Ekleme</h2>
+
+            <div class="my-3">
+                @Html.Label("Ad")
+                @Html.TextBoxFor(x => x.EmployeeName, new { @class = "form-control" })
+            </div>
+
+            <div class="my-3">
+                @Html.Label("Soyad")
+                @Html.TextBoxFor(x => x.EmployeeName, new { @class = "form-control" })
+            </div>
+
+            <div class="my-3">
+                @Html.Label("Departman")
+                @Html.TextBoxFor(x => x.EmployeeDepartment, new { @class = "form-control" })
+            </div>
+
+            <!-- Photo Upload -->
+            <div class="my-3">
+                @Html.Label("Fotoğraf")
+                <input type="file" name="LogoUpload" class="form-control" />
+            </div>
+
+            <div class="py-1 d-flex justify-content-end align-items-center">
+                <button class="btn btn-info" data-toggle="tooltip" data-placement="right" title="Ekle">
+                    <i class="fa-solid fa-circle-check"></i>
+                </button>
+            </div>
+        }
+    </div>
+</div>

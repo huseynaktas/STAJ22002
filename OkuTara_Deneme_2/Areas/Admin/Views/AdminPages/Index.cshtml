@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<title>Admin - Sayfalar</title>
+<style>
+    .btn-info {
+        width: 300px;
+    }
+</style>
+<div class="m-xl-6 m-lg-5 m-md-4 m-sm-3 m-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 m-2">
+                <div class="d-flex justify-content-center">
+                    <a href="@Url.Action("HomePageContent","AdminPages")" class="btn btn-info">Ana Sayfa İçerikleri</a>
+                </div>
+            </div>
+            <div class="col-12 m-2">
+                <div class="d-flex justify-content-center">
+                    <a href="@Url.Action("Index","AdminAbout")" class="btn btn-info">Hakkımızda İçerikleri</a>
+                </div>
+            </div>
+            <div class="col-12 m-2">
+                <div class="d-flex justify-content-center">
+                    <a href="@Url.Action("Index","AdminHomeSliderPhoto")" class="btn btn-info">Ana Sayfa Slider Fotoğrafları</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,127 @@
+﻿@using OkuTara_Deneme_2.ViewModels
+@model OkuTara_Deneme_2.ViewModels.MessageViewModel
+@{
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<title>@Model.QRContent.User.UserName @Model.QRContent.User.UserSurname</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Scripts/jquery-3.7.0.js"></script>
+
+<link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/QRContentFetchCss/style.css?v=1.1" />
+<div class="qr-content-container">
+    @Html.Hidden("QRContentId", Model.QRContent.QRContentId)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.QRContent.User.UserName, "Ad Soyad")
+        <div class="url-display">
+            <p class="display-value">@Model.QRContent.User.UserName @Model.QRContent.User.UserSurname</p>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(Model.QRContent.GeneralMessage))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.QRContent.GeneralMessage, "Genel Mesaj")
+            <div class="url-display">
+                <p class="display-value">@Model.QRContent.GeneralMessage</p>
+            </div>
+        </div>
+    }
+
+
+    @if (Model.QRContent.InstagramState && !string.IsNullOrWhiteSpace(Model.QRContent.InstagramUrl))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.QRContent.InstagramUrl, "İnstagram Adresi")
+            <div class="url-display">
+                <p class="display-value">@Model.QRContent.InstagramUrl</p>
+                <button class="go-to-url" onclick="window.location.href='@Model.QRContent.InstagramUrl'">Git</button>
+            </div>
+        </div>
+    }
+
+    @if (Model.QRContent.FacebookState && !string.IsNullOrWhiteSpace(Model.QRContent.FacebookUrl))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.QRContent.FacebookUrl, "Facebook Adresi")
+            <div class="url-display">
+                <p class="display-value">@Model.QRContent.FacebookUrl</p>
+                <button class="go-to-url" onclick="window.location.href='@Model.QRContent.FacebookUrl'">Git</button>
+            </div>
+        </div>
+    }
+
+    @if (Model.QRContent.XState && !string.IsNullOrWhiteSpace(Model.QRContent.XUrl))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.QRContent.XUrl, "X Adresi")
+            <div class="url-display">
+                <p class="display-value">@Model.QRContent.XUrl</p>
+                <button class="go-to-url" onclick="window.location.href='@Model.QRContent.XUrl'">Git</button>
+            </div>
+        </div>
+    }
+
+    @if (Model.QRContent.WhatsappState && !string.IsNullOrWhiteSpace(Model.QRContent.WhatsappUrl))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.QRContent.WhatsappUrl, "Whatsapp Adresi")
+            <div class="url-display">
+                <p class="display-value">@Model.QRContent.WhatsappUrl</p>
+                <button class="go-to-url" onclick="window.location.href='@Model.QRContent.WhatsappUrl'">Git</button>
+            </div>
+        </div>
+    }
+
+
+</div>
+<div class="qr-content-container">
+    <h2>@Model.QRContent.User.UserName @Model.QRContent.User.UserSurname Kişisine Mesaj Gönder</h2>
+    @using (Html.BeginForm("SendMessage", "QRContent", FormMethod.Post, new { id = "messageForm" }))
+    {
+        @Html.HiddenFor(m => m.QRContent.QRContentId)
+        @Html.HiddenFor(m => m.QRContent.UserId)
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Message.MessageContent, "Mesaj İçeriği")
+            @Html.TextAreaFor(m => m.Message.MessageContent, new { @class = "form-control", id = "MessageContent", maxlength = "499" })
+            @Html.ValidationMessageFor(m => m.Message.MessageContent)
+        </div>
+
+        <button type="submit" class="btn btn-primary">Gönder</button>
+    }
+
+
+    @if (TempData["Success"] != null && (bool)TempData["Success"])
+    {
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Başarılı!',
+                text: 'Mesajınız başarılı bir şekilde gönderildi.',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            });
+        </script>
+    }
+
+    <script>
+        document.getElementById("messageForm").addEventListener("submit", function (event) {
+            var messageContent = document.getElementById("MessageContent").value.trim();
+
+            if (!messageContent) {
+                event.preventDefault(); // Formun gönderilmesini durdur
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata!',
+                    text: 'Lütfen mesaj içeriğinizi doldurunuz.',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true
+                });
+            }
+        });
+    </script>
+</div>

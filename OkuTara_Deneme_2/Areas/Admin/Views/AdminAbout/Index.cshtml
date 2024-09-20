@@ -1,0 +1,23 @@
+﻿@model OkuTara_Deneme_2.Models.Classes.About
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<title>Admin - Hakkımızda</title>
+<div class="p-5 d-flex justify-content-center">
+    <form method="post" action="@Url.Action("Index", "AdminAbout")">
+        <h2>Hakkımızda İçeriğini Düzenle</h2>
+        <div class="form-group">
+            <textarea id="aboutContent" name="AboutContent" rows="10" class="form-control">@Model.AboutContent</textarea>
+        </div>
+        <div class="py-1 d-flex justify-content-end align-items-center">
+            <button type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="right" title="Güncelle"><i class="fa-solid fa-circle-check"></i></button>
+        </div>
+    </form>
+
+    <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+    @*<script src="https://cdn.ckeditor.com/4.25.0/standard/ckeditor.js"></script>*@
+
+    <script>
+        CKEDITOR.replace('aboutContent');
+    </script>
+</div>

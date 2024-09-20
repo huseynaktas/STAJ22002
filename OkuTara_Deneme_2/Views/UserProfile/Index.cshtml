@@ -1,0 +1,64 @@
+﻿@model OkuTara_Deneme_2.Models.Classes.User
+@{
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+    var qrContentUrl = Url.Action("QRContentFetch", "QRContent", new { id = Model.UserId }, null);
+    var messageUrl = Url.Action("Messages", "UserProfile");
+    var qrShowUrl = Url.Action("QRShow", "UserProfile", new { id = Model.UserId });
+}
+
+<title>Profil</title>
+
+<link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/UserProfile/style.css?v=1.1"/>
+@*<link rel="stylesheet" href="~/DefaultLayoutDesignFolder/css/UserProfile/style.css"/>*@
+<br />
+
+@using (Html.BeginForm("Index2", "UserProfile", FormMethod.Post))
+{
+    <table class="table table-hover">
+        <tr>
+            <td>
+                <label>@HttpContext.Current.User.Identity.Name</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(x => x.UserName, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(x => x.UserSurname, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(x => x.UserPhone, new { @class = "form-control" })
+            </td>
+        </tr>
+    </table>
+}
+
+
+@*<button>
+    <a href="@qrContentUrl" class="list-group-item list-group-item-action bg-light">QR İçeriğim</a>
+</button>
+<button>
+    <a href="@messageUrl" class="list-group-item list-group-item-action bg-light">Mesajlarım</a>
+</button>
+<button>
+    <a href="@qrShowUrl" class="list-group-item list-group-item-action bg-light">QR'ım</a>
+</button>*@
+
+<div class="container">
+    <div class="button-container">
+        <button class="button-item">
+            <a href="@qrContentUrl" class="list-group-item list-group-item-action bg-light">QR İçeriğim</a>
+        </button>
+        <button class="button-item">
+            <a href="@messageUrl" class="list-group-item list-group-item-action bg-light">Mesajlarım</a>
+        </button>
+        <button class="button-item">
+            <a href="@qrShowUrl" class="list-group-item list-group-item-action bg-light">QR'ım</a>
+        </button>
+    </div>
+</div>

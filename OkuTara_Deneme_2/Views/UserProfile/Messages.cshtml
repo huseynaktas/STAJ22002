@@ -1,0 +1,39 @@
+﻿@model IEnumerable<OkuTara_Deneme_2.Models.Classes.Message>
+
+@{
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<link href="~/DefaultLayoutDesignFolder/css/MessageCss/style.css?v=1.2" rel="stylesheet" />
+@*<link href="~/DefaultLayoutDesignFolder/css/MessageCss/style.css" rel="stylesheet" />*@
+<title>Mesajlarım</title>
+
+    <h2>Mesajlarım</h2>
+
+<div class="message-container">
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Mesaj İçeriği</th>
+                    <th>Gönderilme Tarihi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var message in Model)
+                {
+                    <tr>
+                        <td>@message.MessageContent</td>
+                        <td>@message.MessageDate</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="empty-message">Henüz mesajınız yok.</p>
+    }
+</div>

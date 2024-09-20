@@ -1,0 +1,43 @@
+﻿@model OkuTara_Deneme_2.Models.Classes.Employee
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<title>Admin - Çalışan Detay</title>
+
+<div class="p-5 d-flex justify-content-center">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+    {
+        <h2>Çalışan Bilgileri Güncelleme</h2>
+
+        @Html.HiddenFor(x => x.EmployeeId)
+
+        <div class="my-2">
+            @Html.Label("Ad")
+            @Html.TextBoxFor(x => x.EmployeeName, new { @class = "form-control" })
+        </div>
+        <div class="my-2">
+            @Html.Label("Soyad")
+            @Html.TextBoxFor(x => x.EmployeeSurname, new { @class = "form-control" })
+        </div>
+        <div class="my-2">
+            @Html.Label("Departman")
+            @Html.TextBoxFor(x => x.EmployeeDepartment, new { @class = "form-control" })
+        </div>
+        <div class="my-2">
+            @Html.Label("Fotoğraf Yükle")
+            <input type="file" name="PhotoUpload" class="form-control" />
+            @if (!string.IsNullOrEmpty(Model.EmployeeImage))
+            {
+                <p>Mevcut Fotoğraf:</p>
+                <div class="d-flex justify-content-center">
+                    <img src="@Model.EmployeeImage" alt="Site Logosu" style="max-width: 100px; max-height:100px;" />
+
+                </div>
+            }
+        </div>
+        <div class="py-1 d-flex justify-content-end align-items-center">
+            <button class="btn btn-info" data-toggle="tooltip" data-placement="right" title="Güncelle"><i class="fa-solid fa-circle-check"></i></button>
+        </div>
+    }
+</div>

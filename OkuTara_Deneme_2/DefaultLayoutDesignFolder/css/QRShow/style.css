@@ -1,0 +1,141 @@
+﻿
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f9;
+}
+
+
+.qr-container {
+    text-align: center;
+    max-width: 1000px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.baslik {
+    margin: 20px;
+}
+
+.qr-first, .qr-others {
+    width: 100%;
+    text-align: center;
+}
+
+    .qr-first img {
+        width: 250px;
+        height: auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+
+.qr-others {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    max-width: 100%;
+}
+
+.qr-item {
+    box-sizing: border-box; /* Padding ve border'ı genişliğe dahil etme */
+    margin-bottom: 20px;
+}
+
+    .qr-item img {
+        width: 250px;
+        height: auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 2px solid #ddd;
+        border-radius: 8px;
+    }
+
+
+
+.no-qr {
+    font-size: 18px;
+    color: #e74c3c;
+    margin-top: 20px;
+}
+
+button {
+    display: block;
+    width: 400px;
+    margin: 20px auto;
+    padding: 15px;
+    background: #86AB89;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    button:hover {
+        background: #ffffff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+
+
+    button a {
+        color: #ffffff;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    button:hover a {
+        color: #86AB89;
+    }
+
+
+/* Cihaz = Düşük Çözünürlüklü Tablet ve Mobil Ekranlar (Landscape / Yatay Modda) */
+/* Ekran = 481px to 767px Arası Ekranlar */
+@media (min-width: 481px) and (max-width: 767px) {
+    .qr-item {
+        flex: 0 1 calc(45% - 10px); /* 2 sütun */
+    }
+
+    .qr-first img {
+        width: 200px;
+    }
+
+    .qr-item img {
+        width: 200px;
+    }
+
+    button {
+        width: 300px;
+    }
+}
+
+/* Cihaz = En Çok Tercih Edilen Mobil Boyutlar (Portrait/Dikey Modda) */
+/* Ekran = 320px to 479px Arası Ekranlar */
+@media (min-width: 320px) and (max-width: 480px) {
+    .qr-item {
+        flex: 0 1 100%; /* 1 sütun */
+    }
+
+    .qr-first img {
+        width: 200px;
+    }
+
+    .qr-item img {
+        width: 200px;
+    }
+    button {
+        width: 300px;
+    }
+}

@@ -1,0 +1,57 @@
+﻿@model OkuTara_Deneme_2.Models.Classes.Contact
+@{
+    ViewBag.Title = "ContactDetail";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<title>Admin - Mesaj Detay</title>
+
+<div class="p-5 d-flex justify-content-center">
+
+    @using (Html.BeginForm("ContactUpdate", "AdminMessage", FormMethod.Post))
+    {
+        <h2>Mesaj Bilgileri Güncelleme</h2>
+        @Html.HiddenFor(x => x.ContactId)
+
+        <div class="my-2">
+            @Html.Label("Gönderen")
+            @Html.TextBoxFor(x => x.ContactFullName, new { @class = "form-control", @disabled = "disabled" })
+        </div>
+        <div class="my-2">
+            @Html.Label("Gönderen Mail")
+            @Html.TextBoxFor(x => x.ContactMail, new { @class = "form-control", @disabled = "disabled" })
+        </div>
+
+
+        <div class="my-2">
+            @Html.Label("Mesaj")
+            @Html.TextAreaFor(x => x.ContactContent, new { @class = "form-control", @disabled = "disabled" })
+        </div>
+
+        <div class="my-2">
+            @Html.Label("Gönderim Saati")
+            @Html.TextBoxFor(x => x.TimeToSend, new { @class = "form-control", @disabled = "disabled" })
+        </div>
+
+        <div class="my-2">
+            @Html.Label("Konu")
+            @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", @disabled = "disabled" })
+        </div>
+
+        <div class="my-2 d-flex align-items-center">
+            <div class="">
+                @Html.Label("Okundu", new { @class = "mr-2" })
+            </div>
+            <div class="form-check">
+                @Html.CheckBoxFor(x => x.IsRead, new { @class = "form-check-input", @id = "defaultCheck1" })
+                <label class="form-check-label" for="defaultCheck1"></label>
+            </div>
+        </div>
+
+        <div class="py-1 d-flex justify-content-end align-items-center">
+            <button class="btn btn-info" data-toggle="tooltip" data-placement="right" title="Güncelle">
+                <i class="fa-solid fa-circle-check"></i>
+            </button>
+        </div>
+    }
+</div>
